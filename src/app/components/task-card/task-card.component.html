@@ -1,0 +1,20 @@
+<menu *ngIf="editingTask" form="taskForm">
+    <fieldset form="taskForm">
+        <button type="button" form="taskForm" (click)="deleteTaskEmit()">Eliminar</button>
+        <label for="backgroundColor">Color del fondo</label>
+        <input #backgroundColor form="taskForm" id="backgroundColor" type="color" [value]="task.color" (input)="changeTaskColor(backgroundColor.value)">
+        <label  for="fontColor">Color de fuente</label>
+        <input #IfontColor form="taskForm" id="fontColor" type="color" [value]="task.fontColor" (input)="changeFontColor(IfontColor.value , taskInput)">
+        <button type="button" form="taskForm" (click)="toogleCheckList()" [class]="task.checkList ? '' : 'completed'">CheckList</button>
+    </fieldset>
+</menu>
+
+<input *ngIf="task.checkList" type="checkbox" (change)="taskCompleted($event)" class="taskCheckbox"/>
+<form id="taskForm">
+    <a (click)="editTask(taskInput, taskText)" [style]="'background:'+ task.color" [class]="task.completed ? 'completed' : ''">
+        <p #taskText [style]="'color:'+ task.fontColor" >{{task.title}}</p>
+        <textarea #taskInput (keydown.enter)="finishEditing(taskInput, taskText)" (pointerdown)="stopMousePropagation($event)"
+                autocomplete="off" style="display:none;"></textarea>
+        <img class="editIcon" src="../../../assets/icons/outlinePencil.svg"/>
+    </a>
+</form>

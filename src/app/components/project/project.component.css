@@ -1,0 +1,221 @@
+aside{
+    width: 75%;
+}
+
+main{
+    background: #1f3341;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+menu{
+    margin-block: 8px;
+}
+
+header{
+    background-color: #363e4375;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    max-height: 56px;
+    width: 100%;
+    top: 45px;
+    left: 0;
+}
+
+#titleButton{
+    align-items: center;
+    color: #e2e9eb;
+    cursor: pointer;
+    display: inline-flex;
+    margin-left: 15px;
+    max-width: 100%;
+    transition: background 0.5s ease;
+}
+  
+#titleButton:hover{
+    background-color: #b5cadb50;
+}
+  
+#titleButton > svg{
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
+    transition: all 0.2s ease-out;
+}
+
+#titleButton:hover > svg{
+    width: 25px;
+    height: 25px;
+    margin-left: 7px;
+}
+
+h2{
+    color: #e2e9eb;
+    font-family: system-ui;
+    margin: 0 0 0 15px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    width: 90%;
+}
+
+button{
+    background-color: #b5cadb;
+    border-radius: 7px;
+    border-width: 0;
+    color: #363e43;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 8px;
+    padding: 5px 10px;
+}
+
+button:hover{
+    background-color: #e6edf3;
+}
+
+.addButton{
+    position: absolute;
+    z-index: 2;
+    background-color: transparent;
+    color: #e6edf3;
+    height: fit-content;
+    margin: 0;
+    min-width: 150px;
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+}
+
+.addButton:hover{
+    background-color: transparent;
+}
+  
+.addButton::before{
+    content: "+";
+    margin-right: 5px;
+    font-weight: 100;
+}
+
+.chargeButton{
+    content: "cargar";
+}
+
+.projectContainer{
+    display: flex;
+    margin-top: 100px;
+    min-height: 75vh;
+    padding: 15px;
+    
+}
+
+.newListAddContainer{
+    background-color: transparent;
+    border-radius: 20px;
+    height: fit-content;
+    padding: 8px;
+    transition: all 0.2s ease;
+}
+
+.newListAddContainer > fieldset > textarea{
+    background-color: #3d474d;
+    border: solid 2px #3478dc;
+    border-radius: 2px;
+    height: 23px;
+    color: #e6edf3;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 8px;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    width: -webkit-fill-available;
+}
+
+.newListButton{
+    background-color: #3478dc;
+}
+
+#titleInput{
+    background-color: #b5cadb10;
+    color: #e2e9eb;
+    font-family: system-ui;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 0 0 15px;
+    padding-top: 0;
+    padding-inline-start: 15px;
+    padding-inline-end: 0;
+    width: 100px;
+    visibility:hidden;
+}
+
+.addNewTaskListContainer:not(.newTaskPressed){
+    overflow: hidden;
+    background-color: #b5cadb75;
+    border-radius: 7px;
+    width: 150px;
+    height: 35px;
+    animation: transformTaskreverse 0.3s ease 0s 1 normal forwards;
+}
+
+.addNewTaskListContainer:not(.newTaskPressed):hover{
+    background-color: #b5cadb25;
+}
+
+.addNewTaskListContainer:not(.newTaskPressed) .newListAddContainer{
+    opacity: 0;
+}
+
+.addNewTaskListContainer.newTaskPressed .addButton{
+    opacity: 0;
+    top: 0;
+}
+
+.newTaskPressed{
+    height: 95px;
+    width: 327px;
+    background-color: #161a1d;
+    overflow: hidden;
+    border-radius: 12px;
+    animation: transformTaskAdd 0.3s ease 0s 1 normal;
+    transition: all 0.2s ease;
+}
+
+#taskListContainer{
+    display: flex;
+}
+
+@keyframes transformTaskAdd {
+    0%{
+        background-color: #b5cadb75;
+        height: 35px;
+        width: 150px;
+    }
+    100%{
+        height: 95px;
+        width: 327px;
+        background-color: #161a1d;
+    }
+}
+
+@keyframes transformTaskreverse {
+    0%{
+        height: 95px;
+        width: 327px;
+        background-color: #161a1d;
+    }
+    100%{
+        background-color: #b5cadb75;
+        height: 35px;
+        width: 150px;
+    }
+}
+
+
+

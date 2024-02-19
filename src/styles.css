@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+button{
+    user-select: none;
+}
+
+fieldset{
+    border: 0;
+    border: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+}

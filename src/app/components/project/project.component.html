@@ -1,0 +1,40 @@
+<main>
+    <header>
+        <aside>
+            <a id="titleButton" (click)="editProjectTitle()">
+                <h2>{{projectTitle}}</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20px">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                </svg>
+            </a>
+            <input #titleInput type="text" autocomplete="off"
+                   [value]="projectTitle" id="titleInput" maxlength="50"
+                   (focusout)="titleChange()" (input)="adjustInputWidth(titleInput)" (keydown.enter)="focusOut('titleInput')">
+        </aside>
+        <menu>
+            <button (click)="downloadJSONproject()">Guardar</button>
+        </menu>
+    </header>
+    <section class="projectContainer">
+        <div #dropListArea id="taskListContainer"></div>
+        <div class="addNewTaskListContainer" [class]="addingNewTaskList ? 'newTaskPressed' : ''">
+            <button #buttonAddList 
+                    class="addButton" (click)="showAddNewList(buttonAddList)">
+                    Añadir otra lista
+            </button>
+            <form id="newTaskListForm" class="newListAddContainer">
+                <fieldset>
+                    <textarea #newListInput id="listInput"
+                        (input)="adjustInputHeight(newListInput)" (keydown.enter)="addNewTaskList(newListInput)"
+                        rows="1" cols="20" placeholder="Añade una nueva lista"></textarea>
+                    <button type="button" class="newListButton" (click)="addNewTaskList(newListInput)">Añadir</button>
+                    <button type="reset" (click)="cancelAddNewTaskList()">X</button>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    <app-project-properties *ngIf="listPropertiesOpen && TaskListOpenProperties != undefined" [title]="taskListOpenTitle" 
+    (propertiesEmit)="changeTaskProperties($event)" (focusOut)="closeTaskListProperties()"
+    [taskListColor]="TaskListOpenProperties.listColor" [listFontColor]="TaskListOpenProperties.listFontColor"
+    [defaultTaskColor]="TaskListOpenProperties.defaultTaskColor" [defaultTaskFontColor]="TaskListOpenProperties.defaultTaskFontColor"></app-project-properties> 
+</main>

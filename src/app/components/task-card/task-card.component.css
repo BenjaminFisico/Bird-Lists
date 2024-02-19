@@ -1,0 +1,181 @@
+:host-context(.cdk-drag-placeholder) {
+    opacity: 0.5;
+}
+
+:host-context(.cdk-drag-preview) > menu, :host-context(.cdk-drag-placeholder) > menu{
+    opacity: 0;
+}
+
+a{
+    background-color: #3d474d;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 8px;
+    transition-duration: 0.5s;
+}
+
+a:hover{
+    border: 1px solid #3478dc;
+}
+
+a:hover > .editIcon{
+    opacity: 1;
+}
+
+label{
+    color: #e6edf3;
+    user-select: none;
+    cursor: pointer;
+}
+
+menu{
+    position: absolute;
+    background: transparent;
+    margin-left: 286px;
+    margin-top: -8px;
+    padding: 8px 0;
+    z-index: 2;
+}
+
+menu > fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+menu > fieldset > button, menu > fieldset > label{
+    background: #3478dc;
+    border: 1px solid #e6edf3;
+    border-radius: 4px;
+    color: #e6edf3;
+    cursor: pointer;
+    font-family: math;
+    font-size:larger;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+    outline: none;
+    padding: 0 4px;
+    animation: entrance 0.5s;
+}
+
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+p{
+    margin-block: 0;
+    margin-left: 24px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    white-space: normal;
+    width: -webkit-fill-available;
+}
+
+textarea{
+    background: transparent;
+    border: none;
+    margin-right: 8px;
+    margin-left: 18px;
+    outline: none;
+    resize: none;
+    width: -webkit-fill-available;
+}
+
+.editIcon{
+    height: 16px;
+    filter: contrast(0);
+    opacity: 0;
+    transition-duration: 0.5s;
+}
+
+.focused{
+    border: 1px solid #3478dc;
+}
+
+.focused > .editIcon{
+    opacity: 1;
+}
+
+.completed{
+    opacity: 0.5;
+}
+
+.chooseColor{
+    background-color: #161a1d;
+    padding: 8px;
+}
+
+.taskCheckbox {
+    appearance: none;
+    width: 24px;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 2px solid black;
+    position: absolute;
+    margin-top: 4px;
+    z-index: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.taskCheckbox::before {
+    font-family: "Quicksand", sans-serif;
+    position: absolute;
+    bottom: -7px;
+    left: -2px;
+    content: "✔";
+    font-size: 40px;
+    color: rgb(255, 153, 0);
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+}
+
+.taskCheckbox:checked::before {
+animation: zoom 0.5s ease-in-out;
+transform: scale(1);
+}
+
+@keyframes zoom {
+0% {
+    transform: scale(0);
+}
+
+20% {
+    transform: scale(1.5);
+}
+
+40% {
+    transform: scale(0.5);
+}
+
+50% {
+    transform: scale(1);
+}
+
+70% {
+    transform: scale(1.2);
+}
+
+90% {
+    transform: scale(0.8);
+}
+
+100% {
+    transform: scale(1);
+}
+}
+
+#backgroundColor, #fontColor{
+    opacity: 0;
+    margin-top: -26px;
+    cursor: pointer;
+}

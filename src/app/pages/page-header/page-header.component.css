@@ -1,0 +1,231 @@
+header{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    transition-duration: 0.5s;
+    height: 48px;
+    user-select: none;
+}
+
+h1{
+    margin-block: 0;
+    margin-right: 5px;
+    transition-duration: 0.5s;
+}
+
+.flex{
+    display: flex;
+    min-width: 50%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.noProyect{
+    height: 90%;
+    min-height: 360px;
+}
+
+.noProyect > nav > .titleSection{
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.noProyect > nav > ul > li > a > h1{
+    font-size: 10rem;
+}
+
+.noProyect > nav > ul > li > a > .cssBirdIcon{
+    height: 150px;
+    width: 150px;
+}
+
+.noProyect > nav > ul > li > a:hover .cssBirdIcon{
+    border: 12px solid black;
+}
+
+.noProyect > nav > ul > .titleIcon{
+    margin-top: 15%;
+}
+
+nav{
+    background-color: #161a1d;
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    border-color: #a3b6bd;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+ul{
+    align-items: center;
+    display: flex;
+}
+
+li{
+    list-style: none;
+    margin: 0 4px 0 4px;
+}
+
+a{
+    color: #a3b6bd;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+button, .chargeProject input + label{
+    background-color: #3478dc;
+    border-radius: 5px;
+    border-width: 0;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px;
+    transition: all 0.5s ease;
+    margin-left: 30px;
+}
+  
+button:hover, .chargeProject input + label:hover{
+    background-color: #90c8f4;
+    color: #5b757f;
+}
+
+.homeButton{
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+    padding: 5px;
+    transition: all 0.5s ease;
+}
+
+.homeButton:hover{
+    background-color: #c9d4d8;
+    color: #5b757f;
+}
+
+.homeButton:hover > .titleIcon{
+    background-color: #161a1d;
+}
+
+.homeButton:hover > .titleIcon > img{
+    filter: invert(100%);
+}
+
+.configButton{
+    background-color: transparent;
+    border-color: #a3b6bd50;
+    border-radius: 100%;
+    border-width: 2px;
+    border-style: solid;
+    font-size: large;
+    font-weight: 700;
+    padding: 0px 5px 0px 5px;
+}
+
+.menuIcon{
+    border-radius: 100%;
+    padding: 10px 8px 10px 8px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.menuIcon:hover{
+    background-color: #90c8f450;
+}
+
+.cssBirdIcon{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 4px;
+    width: 32px;
+    height: 32px;
+    transition-duration: 0.5s;
+    border-radius: 100%;
+    background: wheat;
+    border: 3px solid wheat;
+}
+
+a:hover .cssBirdIcon{
+    width: 38px;
+    height: 38px;
+    border: 3px solid black;
+    background-color: black;
+    margin: 0px 8px;
+}
+
+a:hover .cssBirdIcon >.birdBody, a:hover .cssBirdIcon > .birdWing{
+    filter:invert(100%);
+    animation: birdFly 0.5s infinite alternate ease-in-out;
+}
+
+a:hover .cssBirdIcon > .birdWing{
+    animation: wingMove 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes birdFly{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-10%);
+    }
+}
+
+@keyframes wingMove{
+    100%{
+        transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(-180deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0%) translateZ(0px) skewX(0deg) skewY(0deg);
+    }
+}
+
+.cssBirdIcon > .birdBody{
+    position: relative;
+    left: 50%;
+    top: 10%;
+    width: 100%;
+    height: 100%;
+}
+
+.cssBirdIcon > .birdWing{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 10%;
+    right: 50%;
+}
+
+/* background-color: #3478dc; */
+.chargeProject input{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+}
+
+@media (max-width: 1016px) {
+    .noProyect > nav > ul > li > a > h1{
+        font-size: 8rem;
+    }
+
+    .noProyect > nav > ul > li > a > .cssBirdIcon{
+        height: 125px;
+        width: 125px;
+    }
+}
+
+@media (max-width: 855px) {
+    .noProyect > nav > ul > li > a > h1{
+        font-size: 6rem;
+    }
+
+    .noProyect > nav > ul > li > a > .cssBirdIcon{
+        height: 100px;
+        width: 100px;
+    }
+}

@@ -1,6 +1,19 @@
-# TrelloClon
+# Bird Lists
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+
+# Paleta de colores:
+--bunker-50: #f4f7f7;
+--bunker-100: #e2e9eb;
+--bunker-200: #c9d4d8;
+--bunker-300: #a3b6bd;
+--bunker-400: #76909a;
+--bunker-500: #5b757f;
+--bunker-600: #4e626c;
+--bunker-700: #44525a;
+--bunker-800: #3d474d;
+--bunker-900: #363e43;
+--bunker-950: #161a1d;
 
 ## Development server
 

@@ -1,0 +1,106 @@
+.propertiesContainer{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    border: 3px solid #4b5058;
+    border-radius: 5px;
+    padding: 8px;
+    animation: fade-in 0.5s ease;
+    width: 50%;
+}
+
+@keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+h2{
+    margin-block: 0;
+    margin: 8px auto;
+}
+
+.form-item{
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.form-item input{
+    display: block;
+    height: 28px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    outline: none;
+    width: -webkit-fill-available;
+}
+
+.form-item input:focus{
+    border-color: #6565EC;
+    border-width: 2px;
+}
+
+.form-item input:focus + label{
+    color: #6565EC;
+}
+
+label{
+    color: white;
+}
+
+.form-item label{
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 10px;
+    left: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #fff;
+    color:#999;
+    transition: all 0.1s ease;
+    user-select: none;
+}
+
+.form-item input:focus + label,
+.form-item input:valid + label{
+    font-size: 12px;
+    top:-5px;
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #4b5058;
+}
+
+.colorChooser{
+    display: flex;
+    flex-direction: row;
+    margin: 16px 0;
+    border: 0;
+}
+
+.formTitle{
+    border: 0;
+}
+
+.formTitle > legend{
+    position: relative;
+    font-size: 30px;
+    margin: 16px auto;
+}
+
+.warning{
+    color: rgb(146, 0, 0);
+    border: 0;
+}

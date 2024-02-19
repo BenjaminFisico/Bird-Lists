@@ -1,0 +1,37 @@
+<form class="propertiesContainer" id="projectPropertiesForm">
+    <fieldset class="formTitle">
+        <legend>{{newProyect ? 'Nuevo proyecto' : 'Propiedades de la lista ' + title}}</legend>
+    </fieldset>
+    <fieldset class="form-item">
+        <input type="text" id="projectNameInput"  required maxlength="50" autocomplete="off"
+            [value]="title" (keydown.enter)="buttonEmit()">
+        <label for="projectNameInput">{{newProyect ? 'Titulo del proyecto' : 'Titulo de la lista'}}</label>
+    </fieldset>
+    <fieldset form="projectPropertiesForm">
+        <legend>Colores</legend>
+        <fieldset class="colorChooser" form="projectPropertiesForm">
+            <label for="taskListColor">Color de lista:</label>
+            <input type="color" id="taskListColor" [value]="taskListColor">
+        </fieldset>
+        <fieldset class="colorChooser" form="projectPropertiesForm">
+            <label for="taskFontColor">Color de fuente de lista:</label>
+            <input type="color" id="listFontColor" [value]="listFontColor">
+        </fieldset>
+        <fieldset class="colorChooser" form="projectPropertiesForm">
+            <label for="taskColor">Color de tareas:</label>
+            <input type="color" id="taskColor" [value]="defaultTaskColor">
+        </fieldset>
+        <fieldset class="colorChooser" form="projectPropertiesForm">
+            <label for="taskFontColor">Color de fuente de las tareas:</label>
+            <input type="color" id="taskFontColor" [value]="defaultTaskFontColor">
+        </fieldset>
+        <fieldset class="warning">
+            <legend>* ¡No se recomienda usar el mismo color de fondo y de letra!</legend>
+        </fieldset>
+    </fieldset>
+    <fieldset class="colorChooser" form="projectPropertiesForm">
+        <input type="checkbox" id="checksCheck" [checked]="defaultCheck">
+        <label for="checksCheck">CheckList por defecto</label>
+    </fieldset>
+    <button type="button" (click)="buttonEmit()" form="projectPropertiesForm">{{newProyect ? 'crear proyecto' : 'ok'}}</button>
+</form>

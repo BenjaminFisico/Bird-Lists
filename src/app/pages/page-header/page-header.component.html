@@ -1,0 +1,26 @@
+<header [class]="!showMenu ? '':'noProyect'">
+    <nav>
+      <ul class="titleSection">
+        <li class="titleIcon"><a href="#" (click)="showMainMenu()" routerLink="/" class="homeButton">
+          <h1>Birds</h1>
+          <div class="cssBirdIcon">
+            <img class="birdBody" src="../../../assets/icons/origami-bird-static.svg"/>
+            <img class="birdWing" src="../../../assets/icons/origami-bird-wing.svg"/>
+          </div>
+          <h1>Lists </h1>
+          <button *ngIf="!showMenu">Volver al menu</button>
+        </a></li>
+        <li *ngIf="showMenu" class="flex">
+          <button (click)="newProjectPressed()">Nuevo proyecto</button>
+          <div class="chargeProject">
+            <input type="file" accept=".json" id="chargeProjectInput" (change)="loadProject($event)"/>
+            <label for="chargeProjectInput">Cargar proyecto</label>
+          </div>
+        </li>
+        <li *ngIf="showMenu && projectCharged"><button (click)="closeMainMenu()" >Continuar</button></li>
+      </ul>
+      <ul>
+        <li><a class="menuIcon" routerLink="/help" target="_blank"><span class="configButton">?</span></a></li>
+      </ul>
+    </nav>
+</header>
