@@ -9,7 +9,7 @@
     </fieldset>
 </menu>
 
-<input *ngIf="task.checkList" type="checkbox" (change)="taskCompleted($event)" class="taskCheckbox"/>
+<input *ngIf="task.checkList" type="checkbox" (change)="taskCompleted($event)" class="taskCheckbox" [checked]="task.completed"/>
 <form id="taskForm">
     <a (click)="editTask(taskInput, taskText)" [style]="'background:'+ task.color" [class]="task.completed ? 'completed' : ''">
         <p #taskText [style]="'color:'+ task.fontColor" >{{task.title}}</p>
