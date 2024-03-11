@@ -30,8 +30,9 @@
         </fieldset>
     </fieldset>
     <fieldset class="colorChooser" form="projectPropertiesForm">
-        <input type="checkbox" id="checksCheck" [checked]="defaultCheck">
-        <label for="checksCheck">CheckList por defecto</label>
+        <input class="checkBoxInput" type="checkbox" id="checksCheck" [checked]="defaultCheck">
+        <label for="checksCheck"></label>
+        <span>CheckList por defecto</span>
     </fieldset>
     <button type="button" (click)="buttonEmit()" form="projectPropertiesForm">{{newProyect ? 'crear proyecto' : 'ok'}}</button>
 </form>
