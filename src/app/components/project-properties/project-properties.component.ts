@@ -44,15 +44,14 @@ export class ProjectPropertiesComponent implements OnInit{
   }
 
   buttonEmit(){
-    const title = (<HTMLInputElement>document.getElementById("projectNameInput")).value;
     const taskListColor = (<HTMLInputElement>document.getElementById("taskListColor")).value;
     const listFontColor = (<HTMLInputElement>document.getElementById("listFontColor")).value;
     const taskColor = (<HTMLInputElement>document.getElementById("taskColor")).value;
     const taskFontColor = (<HTMLInputElement>document.getElementById("taskFontColor")).value;
     const defaultCheck = (<HTMLInputElement>document.getElementById("checksCheck")).checked;
+    let title = (<HTMLInputElement>document.getElementById("projectNameInput")).value;
     if(title == ""){
-      alert("por favor, introduzca un titulo");
-      return;
+      title = "NEW PROYECT";
     }
     const data = {
       title: title,
