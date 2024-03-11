@@ -110,6 +110,10 @@ textarea{
     opacity: 0.5;
 }
 
+.completed p{
+    text-decoration: line-through;
+}
+
 .chooseColor{
     background-color: #161a1d;
     padding: 8px;
