@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Task } from 'src/app/interfaces/task';
 import { TaskCommunicationService } from 'src/app/services/task-communication.service';
 import { DocumentClickService } from 'src/app/services/document-click.service';
@@ -9,7 +9,7 @@ import { CdkDragDrop, DropListRef, moveItemInArray } from '@angular/cdk/drag-dro
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.css']
 })
-export class TasksListComponent implements AfterViewInit {
+export class TasksListComponent implements AfterViewInit, OnInit {
   @Input() ID: number = 1;
   @Input() title: string = "";
   @Input() listColor: string = "";
@@ -22,6 +22,7 @@ export class TasksListComponent implements AfterViewInit {
 
   showOptions :number = 0;
   addingNewTask:boolean = false;
+  tasksCompleted: number = 0;
   private stopShowingInput: HTMLElement|null = null;
 
   protected clickEventListener: EventListener | undefined;
@@ -31,10 +32,17 @@ export class TasksListComponent implements AfterViewInit {
     this.clickEventListener = undefined;
   }
 
+  ngOnInit(): void {
+    this.tasks.forEach(task => {
+      if(task.completed){
+        this.tasksCompleted++;
+      }
+    });
+  }
+
   ngAfterViewInit(): void {
     this.principalContainer.nativeElement.style.setProperty('--background-color', this.listColor);
     this.principalContainer.nativeElement.style.setProperty('--font-color', this.listFontColor);
-    console.log(this.defaultCheck);
   }
 
   changingTitle(titleInput :HTMLInputElement, titleElem :HTMLElement): void {
@@ -113,6 +121,14 @@ export class TasksListComponent implements AfterViewInit {
     newTaskInput.value = "";
     newTaskInput.removeAttribute("style");
     this.addingNewTask = false;
+  }
+
+  taskCompletionChange(completed: boolean){
+    if(completed){
+      this.tasksCompleted++;
+    } else {
+      this.tasksCompleted--;
+    }
   }
 
   deleteTask(task :Task){

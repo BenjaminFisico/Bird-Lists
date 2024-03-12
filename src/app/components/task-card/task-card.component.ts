@@ -10,6 +10,7 @@ import { Task } from 'src/app/interfaces/task';
 export class TaskCardComponent {
   @Input() task: Task = {id:0, title:"", color:"", checkList: true, completed: false , fontColor: "",startTime: new Date()};
   @Output() deleteTask = new EventEmitter<Task>();
+  @Output() taskCompletion = new EventEmitter<boolean>();
   
   editingTask: boolean = false;
   openMenu: number = 0;
@@ -75,7 +76,9 @@ export class TaskCardComponent {
 
   taskCompleted(event:any): void{
     this.task.completed = event.target.checked;
+    this.taskCompletion.emit(this.task.completed);
   }
+
   
   deleteTaskEmit(): void{
     this.deleteTask.emit(this.task);

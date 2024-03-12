@@ -150,3 +150,7 @@ textarea{
     opacity: 0.7;
     cursor: grab;
 }
+
+progress{
+    width: -webkit-fill-available;
+}
