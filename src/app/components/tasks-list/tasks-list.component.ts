@@ -46,19 +46,41 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   changingTitle(titleInput :HTMLInputElement, titleElem :HTMLElement): void {
+    const emojiInput = titleInput.nextElementSibling as HTMLElement;
     titleInput.value = this.title;
-    titleInput.removeAttribute("style");
+    titleInput.style.display = "block";
     titleElem.setAttribute("style","display:none;");
     titleInput.focus();
+    emojiInput.style.display = "block";
+    this.stopShowingInput = titleInput;
+    this.changeTitleClickConfiguration(titleInput, titleElem);
+  }
+
+  changeTitleClickConfiguration(titleInput :HTMLInputElement, titleElem :HTMLElement){
+    const focusOutFunction = this.documentClickEvents.formFocusOut("titleForm", ()=>{
+     this.changeTitle(titleInput, titleElem);
+      if(this.clickEventListener){
+        document.removeEventListener('mousedown', this.clickEventListener);
+      }
+    });
+
+    this.clickEventListener = (e) => focusOutFunction(e);
+    document.addEventListener('mousedown', this.clickEventListener);
   }
 
   changeTitle(titleInput :HTMLInputElement, titleElem :HTMLElement){
+    const emojiInput = titleInput.nextElementSibling as HTMLElement;
     titleInput.value = titleInput.value.trim();
     if(titleInput.value){
     this.title = titleInput.value;
     }
     titleElem.removeAttribute("style");
+    emojiInput.style.display = "none";
     titleInput.setAttribute("style","display:none;");
+    this.documentClickEvents.closeEmojiForm();
+    if(this.clickEventListener){
+      document.removeEventListener('mousedown', this.clickEventListener);
+    }
   }
 
   cancelAddNewTask(newTaskInput: HTMLTextAreaElement){
@@ -121,6 +143,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     newTaskInput.value = "";
     newTaskInput.removeAttribute("style");
     this.addingNewTask = false;
+    this.documentClickEvents.closeEmojiForm();
   }
 
   taskCompletionChange(completed: boolean){
@@ -165,6 +188,10 @@ export class TasksListComponent implements AfterViewInit, OnInit {
 
   changeTasksOrder(event: any): void {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  }
+
+  showInputEmoji(textArea: HTMLTextAreaElement | HTMLInputElement){
+    this.documentClickEvents.openEmojiForm(textArea);
   }
 
 }

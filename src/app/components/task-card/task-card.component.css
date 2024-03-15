@@ -21,10 +21,6 @@ a:hover{
     border: 1px solid #3478dc;
 }
 
-a:hover > .editIcon{
-    opacity: 1;
-}
-
 label{
     color: #e6edf3;
     user-select: none;
@@ -91,19 +87,14 @@ textarea{
     width: -webkit-fill-available;
 }
 
-.editIcon{
-    height: 16px;
-    filter: contrast(0);
-    opacity: 0;
-    transition-duration: 0.5s;
+.textareaRight{
+    position: relative;
+    bottom: 36px;
+    left: 250px;
 }
 
 .focused{
     border: 1px solid #3478dc;
-}
-
-.focused > .editIcon{
-    opacity: 1;
 }
 
 .completed{
@@ -144,8 +135,8 @@ textarea{
 }
 
 .taskCheckbox:checked::before {
-animation: zoom 0.5s ease-in-out;
-transform: scale(1);
+    animation: zoom 0.5s ease-in-out;
+    transform: scale(1);
 }
 
 @keyframes zoom {

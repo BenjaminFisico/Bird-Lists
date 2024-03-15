@@ -3,3 +3,5 @@
 <app-project [projectTitle]="projectTitle" [defaultListData]="taskListDefaultData" [setTaskLists]="projectTasksLists"></app-project>
 
 <app-project-properties *ngIf="creatingNewProyect" (propertiesEmit)="createNewProject($event)" (focusOut)="createNewProyectFocusOut()" [newProyect]="true"></app-project-properties>
+
+<app-input-emojis></app-input-emojis>

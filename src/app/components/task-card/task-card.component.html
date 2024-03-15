@@ -15,6 +15,6 @@
         <p #taskText [style]="'color:'+ task.fontColor" >{{task.title}}</p>
         <textarea #taskInput (keydown.enter)="finishEditing(taskInput, taskText)" (pointerdown)="stopMousePropagation($event)"
                 autocomplete="off" style="display:none;"></textarea>
-        <img class="editIcon" src="../../../assets/icons/outlinePencil.svg"/>
     </a>
+    <button *ngIf="editingTask" type="button" class="showEmojiButton textareaRight" (click)="showInputEmoji(taskInput)"></button>
 </form>

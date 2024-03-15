@@ -55,6 +55,7 @@ export class TaskCardComponent {
     if(this.clickEventListener){
       document.removeEventListener('mousedown', this.clickEventListener);
     }
+    this.documentClickEvents.closeEmojiForm();
   }
 
   changeTaskColor(value: string): void{
@@ -88,5 +89,9 @@ export class TaskCardComponent {
     console.log(event);
     event.stopPropagation();
   }
-  
+
+  showInputEmoji(textArea: HTMLTextAreaElement){
+    this.documentClickEvents.openEmojiForm(textArea);
+  }
+
 }

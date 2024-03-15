@@ -3,9 +3,10 @@
         <legend>{{newProyect ? 'Nuevo proyecto' : 'Propiedades de la lista ' + title}}</legend>
     </fieldset>
     <fieldset class="form-item">
-        <input type="text" id="projectNameInput"  required maxlength="50" autocomplete="off"
+        <input #titleProyect type="text" id="projectNameInput"  required maxlength="50" autocomplete="off"
             [value]="title" (keydown.enter)="buttonEmit()">
         <label for="projectNameInput">{{newProyect ? 'Titulo del proyecto' : 'Titulo de la lista'}}</label>
+        <button type="button" class="showEmojiButton titleInputEmoji" (click)="showInputEmoji(titleProyect)"></button>
     </fieldset>
     <fieldset form="projectPropertiesForm">
         <legend>Colores</legend>

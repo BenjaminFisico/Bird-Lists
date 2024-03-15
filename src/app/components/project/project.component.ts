@@ -119,6 +119,14 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
     }, 100);
   }
 
+  ngAfterViewInit(): void {
+    this.dropListRef = this.dragDropService.createDropList(this.dropListArea);
+    this.dropListRef.withOrientation('horizontal');
+    this.dropListRef.dropped.subscribe((event) => {
+      this.drop(event);
+    });
+  }
+
   clickEventConfiguration(deleteClassElement: HTMLElement){
     const focusOutFunction = this.documentClickEvents.formFocusOut("newTaskListForm", ()=>{
       this.cancelAddNewTaskList();
@@ -127,14 +135,6 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
     
     this.clickEventListener = (e) => focusOutFunction(e);
     document.addEventListener('mousedown', this.clickEventListener);
-  }
-
-  ngAfterViewInit(): void {
-    this.dropListRef = this.dragDropService.createDropList(this.dropListArea);
-    this.dropListRef.withOrientation('horizontal');
-    this.dropListRef.dropped.subscribe((event) => {
-      this.drop(event);
-    });
   }
 
   addNewTaskList(taskListInput :HTMLTextAreaElement){
@@ -147,6 +147,7 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
     taskListInput.value = '';
     taskListInput.value = taskListInput.value.trim();
     this.adjustInputHeight(taskListInput);
+    this.documentClickEvents.closeEmojiForm();
   }
 
   cancelAddNewTaskList(){
@@ -231,23 +232,32 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
   }
 
   adaptInput(idInput: string){
-    const titleButton = document.getElementById("titleButton");
-    console.log(titleButton?.clientWidth ? titleButton?.clientWidth - 25: 100);
     const titleInput = document.getElementById(idInput) as HTMLInputElement | null;
+    const emojiInput = titleInput?.nextElementSibling as HTMLElement;
     let newTitle = titleInput?.value;
     if(newTitle){
       this.projectTitle = newTitle;
     }
     if(titleInput){
       titleInput.setAttribute("style", `visibility:visible;`);
+      emojiInput.setAttribute("style", 'display: block;')
       this.adjustInputWidth(titleInput);
       titleInput.focus();
+      this.clickEventTitleConfiguration(titleInput);
     }
+  }
+
+  clickEventTitleConfiguration(titleInput :HTMLInputElement){
+    const focusOutFunction = this.documentClickEvents.formFocusOut("proyectForm", () => {
+      this.titleChange();
+    });
+
+    this.clickEventListener = (e) => focusOutFunction(e);
+    document.addEventListener('mousedown', this.clickEventListener);
   }
 
   adjustInputWidth(elemInput :HTMLElement){
     elemInput.style.width = '0';
-    console.log(document.getElementById('titleInput')?.style.maxWidth);
     if(elemInput.scrollWidth < window.innerWidth- 300){
       elemInput.style.width = (elemInput.scrollWidth -4) + "px";
     } else {
@@ -257,6 +267,7 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
 
   titleChange(){
     const titleInput = document.getElementById("titleInput") as HTMLInputElement | null;
+    const emojiInput = titleInput?.nextElementSibling as HTMLElement;
     const titleButton = document.getElementById("titleButton");
     let newTitle = titleInput?.value;
 
@@ -270,11 +281,11 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
 
     titleInput?.setAttribute("style", "visibility:hidden;");
     titleButton?.setAttribute("style", "display:inline-flex;");
-  }
+    emojiInput?.setAttribute("style", "display:none;");
 
-  focusOut(idHtmlElement:string){
-    const htmlElement = document.getElementById(idHtmlElement);
-    htmlElement?.blur();
+    if(this.clickEventListener){
+      document.removeEventListener('mousedown', this.clickEventListener);
+    }
   }
 
   adjustInputHeight(elemInput: HTMLElement){
@@ -303,6 +314,10 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
       moveItemInArray(this.tasksList, event.previousIndex, event.currentIndex);
       moveItemInArray(this.dragListRef, event.previousIndex, event.currentIndex);
     }
+  }
+
+  showInputEmoji(textArea: HTMLTextAreaElement | HTMLInputElement){
+    this.documentClickEvents.openEmojiForm(textArea);
   }
 
   downloadJSONproject(){

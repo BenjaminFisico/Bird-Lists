@@ -3,12 +3,14 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="handleIcon">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
         </svg>
-        <a class="titleEditButton" (click)="changingTitle(titleInput, taskListTitle)">
+        <a class="titleEditButton" (click)="changingTitle(titleInput, taskListTitle)"> 
             <h4 #taskListTitle>{{title}}</h4>
-            <input #titleInput type="text" autocomplete="off" (blur)="changeTitle(titleInput, taskListTitle)"
-                (keydown.enter)="changeTitle(titleInput, taskListTitle)" class="contrastInput" style="display:none;"/>
+            <form id="titleForm" action="javascript:void(0);" style="height: 30px;">
+                    <input #titleInput type="text" (keydown.enter)="changeTitle(titleInput, taskListTitle)" autocomplete="off" class="contrastInput noDysplay"/>
+                    <button type="button" class="showEmojiButton titleInputEmoji" (click)="showInputEmoji(titleInput)" style="display: none;"></button>
+            </form>
         </a>
-        <button (click)="showOptionsMenu()">···</button>
+        <button class="taskListbutton" (click)="showOptionsMenu()">···</button>
     </div>
     <ul cdkDropList (cdkDropListDropped)="changeTasksOrder($event)">
         <li *ngFor="let task of tasks" cdkDrag cdkDragLockAxis="y" cdkDragPreviewContainer="parent">
@@ -19,10 +21,11 @@
     <form id="newTaskForm">
         <textarea #newTaskInput (keyup.enter)="addNewTask(newTaskInput)" form="newTaskForm"
                 placeholder="Añade una nueva tarjeta"></textarea>
-        <button *ngIf="!addingNewTask; else newTask" type="button" (click)="showAddNewTask(newTaskInput)" class="webkitFill">Añadir una tarjeta</button>
+        <button *ngIf="!addingNewTask; else newTask" type="button" (click)="showAddNewTask(newTaskInput)" class="taskListbutton webkitFill">Añadir una tarjeta</button>
         <ng-template #newTask>
-                <button type="button" class="newTaskButton" (click)="addNewTask(newTaskInput)">Añadir</button>
-                <button type="reset" (click)="cancelAddNewTask(newTaskInput)">X</button>
+                <button type="button" class="taskListbutton newTaskButton" (click)="addNewTask(newTaskInput)">Añadir</button>
+                <button type="reset" class="taskListbutton" (click)="cancelAddNewTask(newTaskInput)">X</button>
+                <button type="button" class="showEmojiButton textareaRight" (click)="showInputEmoji(newTaskInput)"></button>
         </ng-template>
     </form>
     <!-- Desplegable de acciones en la lista -->
@@ -30,21 +33,21 @@
         <form id="menuOptions">
             <fieldset *ngIf="showOptions == 2; else normalOptions">
                 <div>
-                    <button type="button" (click)="showOptions = 1"><</button>
+                    <button class="taskListbutton" type="button" (click)="showOptions = 1"><</button>
                     <h5>Duplicar lista</h5>
-                    <button type="button">X</button>
+                    <button class="taskListbutton" type="button">X</button>
                 </div>
                 <textarea #duplicateInput class="contrastInput" 
                         value="{{title}}" (keydown.enter)="duplicateSelf(duplicateInput.value)" placeholder="Añade una nueva lista">
                 </textarea>
-                <button type="button" class="newTaskButton" (click)="duplicateSelf(duplicateInput.value)">Duplicar</button>
+                <button type="button" class="taskListbutton newTaskButton" (click)="duplicateSelf(duplicateInput.value)">Duplicar</button>
             </fieldset>
             <ng-template #normalOptions>
                 <fieldset>
-                    <button type="button" (click)="showOptions = 0; changingTitle(titleInput, taskListTitle)">Renombrar</button>
-                    <button type="button" (click)="showOptions = 2" >Duplicar lista</button>
-                    <button type="button" (click)="openProperties()">Propiedades</button>
-                    <button type="button" (click)="deleteSelf()">Eliminar</button>
+                    <button class="taskListbutton" type="button" (click)="showOptions = 0; changingTitle(titleInput, taskListTitle)">Renombrar</button>
+                    <button class="taskListbutton" type="button" (click)="showOptions = 2" >Duplicar lista</button>
+                    <button class="taskListbutton" type="button" (click)="openProperties()">Propiedades</button>
+                    <button class="taskListbutton" type="button" (click)="deleteSelf()">Eliminar</button>
                 </fieldset>
             </ng-template>
         </form>

@@ -11,6 +11,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ProjectPropertiesComponent } from './components/project-properties/project-properties.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HelpComponent } from './pages/help/help.component';
+import { InputEmojisComponent } from './components/input-emojis/input-emojis.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HelpComponent } from './pages/help/help.component';
     ProjectPropertiesComponent,
     HomeComponent,
     HelpComponent,
+    InputEmojisComponent,
   ],
   imports: [
     BrowserModule,

@@ -42,6 +42,7 @@ h2{
     padding: 0 15px;
     outline: none;
     width: -webkit-fill-available;
+    z-index: 0;
 }
 
 .form-item input:focus{
@@ -75,6 +76,13 @@ label{
 .form-item input:valid + label{
     font-size: 12px;
     top:-5px;
+}
+
+.titleInputEmoji{
+    position: absolute;
+    left: 650px;
+    top: 2px;
+    z-index: 2;
 }
 
 fieldset{

@@ -1,0 +1,67 @@
+.sectionEmoji{
+    position: absolute;
+    top: 200px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.headerEmoji{
+    display: grid;
+    border-radius: 20px;
+    background-color: #ffffff50;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.CategorieButton{
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    fill: none;
+    border-radius: 10px;
+    transition: background-color 200ms ease;
+    z-index: 1;
+}
+
+.CategorieButton:hover{
+    background-color: rgb(255, 255, 255);  
+}
+
+.CategorieButton svg{
+    position: relative;
+    z-index: -1;
+}
+
+#emojiContainer{
+    display: flex;
+    width: 181px;
+    height: 178px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 5px 2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.15), 0 2px 16px 1px rgba(0, 0, 0, 0.10);
+}
+
+.emojiBox{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    width: min-content;
+    backdrop-filter: blur(5px);
+}
+
+.emojiBox span{
+    cursor: pointer;
+    font-size: 24px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: inset 3px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    transition: background-color 200ms ease;
+}
+
+.emojiBox span:hover{
+    background-color: rgb(43, 153, 226);
+}

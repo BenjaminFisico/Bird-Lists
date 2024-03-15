@@ -64,4 +64,9 @@ export class ProjectPropertiesComponent implements OnInit{
 
     this.propertiesEmit.emit(data);
   }
+
+  showInputEmoji(input :HTMLInputElement){
+    console.log("button click");
+    this.clickService.openEmojiForm(input);
+  }
 }
