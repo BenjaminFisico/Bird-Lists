@@ -38,6 +38,7 @@ h4{
     overflow-wrap: break-word;
     width: -webkit-fill-available;
     white-space: normal;
+    word-break: break-word;
 }
 
 h5{
@@ -148,7 +149,10 @@ textarea{
     cursor: pointer;
     color: var(--font-color);
     width: -webkit-fill-available;
-    height: 30px;
+}
+
+#titleForm{
+    height: 20px;
 }
 
 .titleEditButton:hover{

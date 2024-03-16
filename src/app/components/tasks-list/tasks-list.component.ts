@@ -50,12 +50,10 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   changingTitle(titleInput :HTMLInputElement, titleElem :HTMLElement): void {
-    const emojiInput = titleInput.nextElementSibling as HTMLElement;
     titleInput.value = this.title;
-    titleInput.style.display = "block";
+    titleInput.parentElement?.setAttribute("style","display:block;");
     titleElem.setAttribute("style","display:none;");
     titleInput.focus();
-    emojiInput.style.display = "block";
     this.stopShowingInput = titleInput;
     this.changeTitleClickConfiguration(titleInput, titleElem);
   }
@@ -73,14 +71,12 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   changeTitle(titleInput :HTMLInputElement, titleElem :HTMLElement){
-    const emojiInput = titleInput.nextElementSibling as HTMLElement;
     titleInput.value = titleInput.value.trim();
     if(titleInput.value){
     this.title = titleInput.value;
     }
-    titleElem.removeAttribute("style");
-    emojiInput.style.display = "none";
-    titleInput.setAttribute("style","display:none;");
+    titleInput.parentElement?.setAttribute("style","display:none;");
+    titleElem.setAttribute("style","display:block;");
     this.documentClickEvents.closeEmojiForm();
     if(this.clickEventListener){
       document.removeEventListener('mousedown', this.clickEventListener);

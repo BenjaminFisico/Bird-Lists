@@ -5,9 +5,9 @@
         </svg>
         <a class="titleEditButton" (click)="changingTitle(titleInput, taskListTitle)"> 
             <h4 #taskListTitle>{{title}}</h4>
-            <form id="titleForm" action="javascript:void(0);" style="height: 30px;">
-                    <input #titleInput type="text" (keydown.enter)="changeTitle(titleInput, taskListTitle)" autocomplete="off" class="contrastInput noDysplay"/>
-                    <button type="button" class="showEmojiButton titleInputEmoji" (click)="showInputEmoji(titleInput)" style="display: none;"></button>
+            <form id="titleForm" class="noDysplay" action="javascript:void(0);">
+                    <input #titleInput type="text" (keydown.enter)="changeTitle(titleInput, taskListTitle)" autocomplete="off" class="contrastInput"/>
+                    <button type="button" class="showEmojiButton titleInputEmoji" (click)="showInputEmoji(titleInput)"></button>
             </form>
         </a>
         <button class="taskListbutton" (click)="showOptionsMenu()">···</button>
