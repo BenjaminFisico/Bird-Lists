@@ -23,6 +23,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   showOptions :number = 0;
   addingNewTask:boolean = false;
   tasksCompleted: number = 0;
+  tasksLenght: number = 0;
   private stopShowingInput: HTMLElement|null = null;
 
   protected clickEventListener: EventListener | undefined;
@@ -34,8 +35,11 @@ export class TasksListComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.tasks.forEach(task => {
-      if(task.completed){
-        this.tasksCompleted++;
+      if(task.checkList){
+        if(task.completed && task.checkList){
+          this.tasksCompleted++;
+        }
+        this.tasksLenght++;
       }
     });
   }
@@ -138,6 +142,9 @@ export class TasksListComponent implements AfterViewInit, OnInit {
         fontColor: this.defaultTaskFontColor,
         startTime: new Date()
       }
+      if(this.defaultCheck){
+        this.tasksLenght++;
+      }
       this.tasks.push(newTask);
     }
     newTaskInput.value = "";
@@ -158,6 +165,20 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     const index = this.tasks.indexOf(task);
     if(index > -1){
       this.tasks.splice(index, 1);
+    }
+  }
+
+  taskCheckListChange(checkList: boolean, taskCompleted: boolean){
+    if(checkList){
+      this.tasksLenght++;
+      if(taskCompleted){
+        this.tasksCompleted++;
+      }
+    } else {
+      this.tasksLenght--;
+      if(taskCompleted){
+        this.tasksCompleted--;
+      }
     }
   }
 

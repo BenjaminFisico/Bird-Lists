@@ -14,7 +14,7 @@
     </div>
     <ul cdkDropList (cdkDropListDropped)="changeTasksOrder($event)">
         <li *ngFor="let task of tasks" cdkDrag cdkDragLockAxis="y" cdkDragPreviewContainer="parent">
-            <app-task-card [task]="task" (deleteTask)="deleteTask($event)" (taskCompletion)="taskCompletionChange($event)"></app-task-card>
+            <app-task-card [task]="task" (deleteTask)="deleteTask($event)" (taskCompletion)="taskCompletionChange($event)" (checkListChange)="taskCheckListChange($event, task.completed)"></app-task-card>
         </li>
     </ul>
     <!-- formulario para añadir una nueva tarea -->
@@ -52,5 +52,5 @@
             </ng-template>
         </form>
     </menu>
-    <progress [value]="tasksCompleted" [max]="tasks.length"></progress>
+    <progress [value]="tasksCompleted" [max]="tasksLenght"></progress>
 </aside>
