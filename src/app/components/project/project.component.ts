@@ -290,8 +290,7 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
   }
 
   ngOnDestroy(): void {
-    this.taskcommunication.deletedTaskList$.unsubscribe();
-    this.taskcommunication.deletedTaskList$.unsubscribe();
+    this.taskcommunication.taskListEmitScope.unsubscribe();
     this.dropListRef?.dropped.unsubscribe();
   }
 
