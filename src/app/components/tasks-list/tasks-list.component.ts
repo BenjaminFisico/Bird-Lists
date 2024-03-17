@@ -179,7 +179,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   deleteSelf(){
-    this.parentComunnication.deleteTaskList(this.ID);
+    this.parentComunnication.deleteTaskList(this);
   }
 
   duplicateSelf(newTaskListTitle :string): void {
@@ -188,7 +188,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   openProperties(){
-    this.parentComunnication.openTaskListProperties(this.ID);
+    this.parentComunnication.openTaskListProperties(this);
     this.showOptions = 0;
   }
 

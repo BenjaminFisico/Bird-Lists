@@ -8,12 +8,10 @@ import { Task } from '../interfaces/task';
   providedIn: 'root'
 })
 export class TaskCommunicationService {
-  deletedTaskList$ = new Subject<number>();
-  duplicateTaskList$ = new Subject<TasksListComponent>();
-  openTaskListProperties$ = new Subject<number>();
+  taskListEmitScope = new Subject<{tasklist: TasksListComponent, action: string}>();
 
-  deleteTaskList(taskListId :number){
-    this.deletedTaskList$.next(taskListId);
+  deleteTaskList(taskList :TasksListComponent){
+    this.taskListEmitScope.next({tasklist: taskList, action: "delete"});
   }
 
   duplicateTaskList(taskList :TasksListComponent, newTaskListTitle :string){
@@ -31,11 +29,11 @@ export class TaskCommunicationService {
       }
       newTaskList.tasks.push(task);
     });
-    this.duplicateTaskList$.next(newTaskList);
+    this.taskListEmitScope.next({tasklist: newTaskList, action: "duplicate"});
   }
 
-  openTaskListProperties(taskListId :number){
-    this.openTaskListProperties$.next(taskListId);
+  openTaskListProperties(taskList: TasksListComponent){
+    this.taskListEmitScope.next({tasklist: taskList, action: "open"});
   }
 
 }

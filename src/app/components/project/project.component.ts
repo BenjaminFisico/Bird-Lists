@@ -57,22 +57,13 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
   }
 
   initCommunicationSubscribeService(){
-    // Delete task list event
-    this.taskcommunication.deletedTaskList$.subscribe(
-      (taskListId) => {
-        this.deleteTaskList(taskListId);
-      }
-    );
-    // Duplicate task list event
-    this.taskcommunication.duplicateTaskList$.subscribe(
-      (taskList) => {
-        this.addTaskLists(taskList.title, taskList.tasks);
-      }
-    );
-    // Open task list properties
-    this.taskcommunication.openTaskListProperties$.subscribe(
-      (taskListId) => {
-        this.openTaskListProperties(taskListId);
+    this.taskcommunication.taskListEmitScope.subscribe(
+      (data) => {
+        switch(data.action){
+          case "delete": this.deleteTaskList(data.tasklist.ID); break;
+          case "duplicate": this.addTaskLists(data.tasklist.title, data.tasklist.tasks); break;
+          case "open": this.openTaskListProperties(data.tasklist.ID);
+        }
       }
     );
   }
