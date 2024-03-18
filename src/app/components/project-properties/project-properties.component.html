@@ -1,6 +1,7 @@
 <form class="propertiesContainer" id="projectPropertiesForm">
+    <div class="backgroundStyle"></div>
     <fieldset class="formTitle">
-        <legend>{{newProyect ? 'Nuevo proyecto' : 'Propiedades de la lista ' + title}}</legend>
+        <legend *ngIf="newProyect" >{{'Nuevo proyecto' + title}}</legend>
     </fieldset>
     <fieldset class="form-item">
         <input #titleProyect type="text" id="projectNameInput"  required maxlength="50" autocomplete="off"
@@ -8,32 +9,36 @@
         <label for="projectNameInput">{{newProyect ? 'Titulo del proyecto' : 'Titulo de la lista'}}</label>
         <button type="button" class="showEmojiButton titleInputEmoji" (click)="showInputEmoji(titleProyect)"></button>
     </fieldset>
-    <fieldset form="projectPropertiesForm">
+    <fieldset form="projectPropertiesForm" class="colorsSection">
         <legend>Colores</legend>
-        <fieldset class="colorChooser" form="projectPropertiesForm">
-            <label for="taskListColor">Color de lista:</label>
-            <input type="color" id="taskListColor" [value]="taskListColor">
-        </fieldset>
-        <fieldset class="colorChooser" form="projectPropertiesForm">
-            <label for="taskFontColor">Color de fuente de lista:</label>
-            <input type="color" id="listFontColor" [value]="listFontColor">
-        </fieldset>
+            <fieldset class="colorChooser" form="projectPropertiesForm">
+                <label for="taskListColor">Color de lista:</label>
+                <input #taskList  type="color" id="taskListColor" [value]="taskListColor" (input)="backgroundListChange()">
+                <label for="taskFontColor">Color de fuente de lista:</label>
+                <input #listFont type="color" id="listFontColor" [value]="listFontColor" (input)="fontListChange()">
+            </fieldset>
         <fieldset class="colorChooser" form="projectPropertiesForm">
             <label for="taskColor">Color de tareas:</label>
-            <input type="color" id="taskColor" [value]="defaultTaskColor">
-        </fieldset>
-        <fieldset class="colorChooser" form="projectPropertiesForm">
+            <input #task type="color" id="taskColor" [value]="defaultTaskColor" (input)="backgroundTaskChange()">
             <label for="taskFontColor">Color de fuente de las tareas:</label>
-            <input type="color" id="taskFontColor" [value]="defaultTaskFontColor">
+            <input #taskFont type="color" id="taskFontColor" [value]="defaultTaskFontColor" (input)="fontTaskChange()">
         </fieldset>
-        <fieldset class="warning">
-            <legend>* ¡No se recomienda usar el mismo color de fondo y de letra!</legend>
+        <fieldset class="colorsExample">
+            <fieldset id="taskListExample" [style]="'background-color:'+ taskList.value + ';color:'+ listFont.value">
+                <legend>Ejemplo de lista</legend>
+                <fieldset id="taskExample" [style]="'background-color:'+ task.value + ';color:'+ taskFont.value">
+                    <legend>Ejemplo de tarea</legend>
+                </fieldset>
+            </fieldset>
         </fieldset>
     </fieldset>
-    <fieldset class="colorChooser" form="projectPropertiesForm">
+    <fieldset class="optionsSection">
         <input class="checkBoxInput" type="checkbox" id="checksCheck" [checked]="defaultCheck">
         <label for="checksCheck"></label>
-        <span>CheckList por defecto</span>
+        <label class="checkBoxLabel" for="checksCheck">CheckList por defecto</label>
     </fieldset>
-    <button type="button" (click)="buttonEmit()" form="projectPropertiesForm">{{newProyect ? 'crear proyecto' : 'ok'}}</button>
+    <button *ngIf="newProyect" class="createButton" type="button" (click)="buttonEmit()">crear proyecto</button>
 </form>
+
+
+<div class="backdetail"></div>

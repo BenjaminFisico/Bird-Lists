@@ -34,6 +34,9 @@ export class ProjectPropertiesComponent implements OnInit{
 
   ngOnInit(): void {
     const focusOutFunction = this.clickService.formFocusOut("projectPropertiesForm", ()=>{
+      if(!this.newProyect){
+        this.buttonEmit();
+      }
       this.focusOut.emit();
       if(this.clickEventListener) {
         document.removeEventListener('mousedown', this.clickEventListener);
@@ -63,6 +66,26 @@ export class ProjectPropertiesComponent implements OnInit{
     }
 
     this.propertiesEmit.emit(data);
+  }
+
+  backgroundListChange(){
+    const taskList:HTMLElement = document.getElementById("taskListExample") as HTMLElement;
+    taskList.style.backgroundColor = this.taskListColor;
+  }
+
+  fontListChange(){
+    const taskList:HTMLElement = document.getElementById("taskListExample") as HTMLElement;
+    taskList.style.color = this.listFontColor;
+  }
+
+  backgroundTaskChange(){
+    const task:HTMLElement = document.getElementById("taskExample") as HTMLElement;
+    task.style.backgroundColor = this.defaultTaskColor;
+  }
+
+  fontTaskChange(){
+    const task:HTMLElement = document.getElementById("taskExample") as HTMLElement;
+    task.style.color = this.defaultTaskFontColor;
   }
 
   showInputEmoji(input :HTMLInputElement){
