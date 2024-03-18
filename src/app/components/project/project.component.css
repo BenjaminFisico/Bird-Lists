@@ -18,6 +18,8 @@ menu{
 
 header{
     background-color: #363e4375;
+    backdrop-filter: blur(5px);
+    z-index:10;
     display: flex;
     justify-content: space-between;
     align-items: center;
