@@ -6,7 +6,7 @@
         <a class="titleEditButton" (click)="changingTitle(titleInput, taskListTitle)"> 
             <h4 #taskListTitle>{{title}}</h4>
             <form id="titleForm" class="noDysplay" action="javascript:void(0);">
-                    <input #titleInput type="text" (keydown.enter)="changeTitle(titleInput, taskListTitle)" autocomplete="off" class="contrastInput"/>
+                    <textarea #titleInput maxlength="90" (keydown.enter)="changeTitle(titleInput, taskListTitle)" (input)="adjustInputHeight(titleInput, 78)" autocomplete="off" class="contrastInput"></textarea>
                     <button type="button" class="showEmojiButton titleInputEmoji" (click)="showInputEmoji(titleInput)"></button>
             </form>
         </a>

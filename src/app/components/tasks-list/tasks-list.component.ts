@@ -22,6 +22,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
 
   showOptions :number = 0;
   addingNewTask:boolean = false;
+  IschangingTitle: boolean = false;
   tasksCompleted: number = 0;
   tasksLenght: number = 0;
   private stopShowingInput: HTMLElement|null = null;
@@ -49,28 +50,27 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     this.principalContainer.nativeElement.style.setProperty('--font-color', this.listFontColor);
   }
 
-  changingTitle(titleInput :HTMLInputElement, titleElem :HTMLElement): void {
+  changingTitle(titleInput :HTMLTextAreaElement, titleElem :HTMLElement): void {
+    if (this.IschangingTitle){return}
     titleInput.value = this.title;
     titleInput.parentElement?.setAttribute("style","display:block;");
     titleElem.setAttribute("style","display:none;");
     titleInput.focus();
     this.stopShowingInput = titleInput;
     this.changeTitleClickConfiguration(titleInput, titleElem);
+    this.IschangingTitle = true;
   }
 
-  changeTitleClickConfiguration(titleInput :HTMLInputElement, titleElem :HTMLElement){
+  changeTitleClickConfiguration(titleInput :HTMLTextAreaElement, titleElem :HTMLElement){
     const focusOutFunction = this.documentClickEvents.formFocusOut("titleForm", ()=>{
      this.changeTitle(titleInput, titleElem);
-      if(this.clickEventListener){
-        document.removeEventListener('mousedown', this.clickEventListener);
-      }
     });
 
     this.clickEventListener = (e) => focusOutFunction(e);
     document.addEventListener('mousedown', this.clickEventListener);
   }
 
-  changeTitle(titleInput :HTMLInputElement, titleElem :HTMLElement){
+  changeTitle(titleInput :HTMLTextAreaElement, titleElem :HTMLElement){
     titleInput.value = titleInput.value.trim();
     if(titleInput.value){
     this.title = titleInput.value;
@@ -78,8 +78,19 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     titleInput.parentElement?.setAttribute("style","display:none;");
     titleElem.setAttribute("style","display:block;");
     this.documentClickEvents.closeEmojiForm();
+    this.IschangingTitle = false;
     if(this.clickEventListener){
       document.removeEventListener('mousedown', this.clickEventListener);
+    }
+  }
+
+  adjustInputHeight(elemInput: HTMLElement, maxHeight: number){
+    elemInput.style.height = '0';
+    const newHeight = Math.min(elemInput.scrollHeight, maxHeight);
+    elemInput.style.height = `${newHeight}px`;
+    let parentElement = elemInput.parentElement;
+    if(parentElement){
+      parentElement.style.height = `${newHeight}px`;
     }
   }
 
