@@ -1,5 +1,5 @@
 .propertiesContainer{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     color: white;
     left: 50%;
