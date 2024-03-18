@@ -58,6 +58,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     titleInput.focus();
     this.stopShowingInput = titleInput;
     this.changeTitleClickConfiguration(titleInput, titleElem);
+    this.adjustInputHeight(titleInput, 78);
     this.IschangingTitle = true;
   }
 
