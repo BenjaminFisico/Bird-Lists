@@ -43,7 +43,7 @@ export class DocumentClickService {
   }
 
   emojiFormClicked(emoji :string){
-    if(this.insertEmojiInput){
+    if(this.insertEmojiInput && ( this.insertEmojiInput.maxLength == -1 || this.insertEmojiInput.maxLength > this.insertEmojiInput.value.length) ){
       this.insertEmojiInput.value = this.insertEmojiInput.value + emoji;
       this.insertEmojiInput.focus();
     }
