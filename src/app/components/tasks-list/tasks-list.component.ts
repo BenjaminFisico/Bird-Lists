@@ -173,6 +173,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     const index = this.tasks.indexOf(task);
     if(index > -1){
       this.tasks.splice(index, 1);
+      this.tasksLenght--;
     }
   }
 
