@@ -29,8 +29,8 @@ export class DocumentClickService {
     const emojiForm: HTMLElement = document.getElementById("formEmoji") as HTMLElement;
     if(emojiForm != null){
       emojiForm.style.display = "block";
-      emojiForm.style.top = insertIn.getBoundingClientRect().bottom + "px";
-      emojiForm.style.left = (insertIn.getBoundingClientRect().right - emojiForm.clientWidth) + "px";
+      emojiForm.style.top = (insertIn.getBoundingClientRect().bottom + window.scrollY) + "px";
+      emojiForm.style.left = ((insertIn.getBoundingClientRect().right + window.scrollX) - emojiForm.clientWidth) + "px";
     }
     this.insertEmojiInput = insertIn;
     insertIn.focus();
