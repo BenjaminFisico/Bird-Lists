@@ -33,9 +33,15 @@
         </fieldset>
     </fieldset>
     <fieldset class="optionsSection">
-        <input class="checkBoxInput" type="checkbox" id="checksCheck" [checked]="defaultCheck">
+        <input class="checkBoxInput" type="checkbox" id="checksCheck" [checked]="defaultCheck" />
         <label for="checksCheck"></label>
         <label class="checkBoxLabel" for="checksCheck">CheckList por defecto</label>
+        <input class="checkBoxInput" type="checkbox" id="defaultTaskPos" [checked]="insertInTop" />
+        <label for="defaultTaskPos"></label>
+        <label class="checkBoxLabel" for="defaultTaskPos">Agregar al principio</label>
+        <input class="checkBoxInput" type="checkbox" id="defaulthiddenTask" [checked]="hiddenCompleted" />
+        <label for="defaulthiddenTask"></label>
+        <label class="checkBoxLabel" for="defaulthiddenTask">ocultar tareas completadas</label>
     </fieldset>
     <button *ngIf="newProyect" class="createButton" type="button" (click)="buttonEmit()">crear proyecto</button>
 </form>

@@ -14,13 +14,17 @@ export class ProjectPropertiesComponent implements OnInit{
   @Input() defaultTaskFontColor: string = "#e6edf3";
   @Input() defaultCheck: boolean = true;
   @Input() newProyect: boolean = false;
+  @Input() insertInTop: boolean = false;
+  @Input() hiddenCompleted: boolean = false;
   @Output() propertiesEmit = new EventEmitter<{
     title: string,  
     listColor: string,
     listFontColor: string,
     defaultTaskColor: string,
     defaultTaskFontColor: string,
-    defaultCheck: boolean
+    defaultCheck: boolean,
+    defaultInsertInTop: boolean,
+    defaultHiddenCompleted: boolean
   }>();
   @Output() focusOut = new EventEmitter();
 
@@ -52,6 +56,9 @@ export class ProjectPropertiesComponent implements OnInit{
     const taskColor = (<HTMLInputElement>document.getElementById("taskColor")).value;
     const taskFontColor = (<HTMLInputElement>document.getElementById("taskFontColor")).value;
     const defaultCheck = (<HTMLInputElement>document.getElementById("checksCheck")).checked;
+    const insertIntop = (<HTMLInputElement>document.getElementById("defaultTaskPos")).checked;
+    const hiddenCompleted = (<HTMLInputElement>document.getElementById("defaulthiddenTask")).checked;
+
     let title = (<HTMLInputElement>document.getElementById("projectNameInput")).value;
     if(title == ""){
       title = "NEW PROYECT";
@@ -62,9 +69,10 @@ export class ProjectPropertiesComponent implements OnInit{
       listFontColor: listFontColor,
       defaultTaskColor: taskColor,
       defaultTaskFontColor: taskFontColor,
-      defaultCheck: defaultCheck
+      defaultCheck: defaultCheck,
+      defaultInsertInTop: insertIntop,
+      defaultHiddenCompleted: hiddenCompleted
     }
-
     this.propertiesEmit.emit(data);
   }
 

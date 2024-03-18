@@ -20,12 +20,16 @@ export class HomeComponent {
                         listFontColor: string, 
                         defaultTaskColor: string, 
                         defaultTaskFontColor: string, 
-                        defaultCheck: boolean} = {
+                        defaultCheck: boolean,
+                        defaultInsertInTop: boolean,
+                        defaultHiddenCompleted: boolean} = {
     listColor: "",
     listFontColor: "",
     defaultTaskColor: "",
     defaultTaskFontColor: "",
-    defaultCheck: true
+    defaultCheck: true,
+    defaultInsertInTop: false,
+    defaultHiddenCompleted: false
   }
 
   constructor() { }
@@ -43,7 +47,9 @@ export class HomeComponent {
       listFontColor: data.listFontColor,
       defaultTaskColor: data.defaultTaskColor,
       defaultTaskFontColor: data.defaultTaskFontColor,
-      defaultCheck: data.defaultCheck
+      defaultCheck: data.defaultCheck,
+      defaultInsertInTop: data.defaultInsertInTop,
+      defaultHiddenCompleted: data.defaultHiddenCompleted
     }
     this.projectTasksLists = [];
     this.projectCharged = true;
@@ -66,7 +72,9 @@ export class HomeComponent {
       listFontColor: event.listFontColor,
       defaultTaskColor: event.defaultTaskColor,
       defaultTaskFontColor: event.defaultTaskFontColor,
-      defaultCheck: event.defaultCheck
+      defaultCheck: event.defaultCheck,
+      defaultInsertInTop: event.defaultInsertInTop,
+      defaultHiddenCompleted: event.defaultHiddenCompleted
     }
     this.projectTasksLists = event.taskLists;
     this.pageHeader.closeMainMenu();

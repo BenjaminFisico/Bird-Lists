@@ -8,4 +8,6 @@ export interface Project {
     defaultTaskFontColor: string,
     defaultCheck: boolean,
     taskLists: TaskList[],
+    defaultInsertInTop: boolean,
+    defaultHiddenCompleted: boolean
 }

@@ -20,6 +20,8 @@ export class FileLogicService {
       defaultTaskFontColor: project.defaultListData.defaultTaskFontColor,
       defaultCheck: project.defaultListData.defaultCheck,
       taskLists: [],
+      defaultInsertInTop: project.defaultListData.defaultInsertInTop,
+      defaultHiddenCompleted: project.defaultListData.defaultHiddenCompleted
     };
 
     project.tasksList.forEach(taskList => {
@@ -27,6 +29,8 @@ export class FileLogicService {
         id: taskList.instance.ID,
         title: taskList.instance.title,
         tasks: [],
+        insertInTop: taskList.instance.insertInTop,
+        hiddenCompleted: taskList.instance.hiddenCompleted
       };
       if(taskList.instance.listColor != data.listColor){
         taskListData.listColor = taskList.instance.listColor;

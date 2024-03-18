@@ -18,6 +18,8 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   @Input() defaultTaskFontColor: string = "";
   @Input() defaultCheck: boolean = true;
   @Input() tasks: Task[] = [];
+  @Input() insertInTop: boolean = false;
+  @Input() hiddenCompleted: boolean = false;
   @ViewChild('principalContainer') principalContainer!: ElementRef;
 
   showOptions :number = 0;
@@ -51,13 +53,14 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   changingTitle(titleInput :HTMLTextAreaElement, titleElem :HTMLElement): void {
-    if (this.IschangingTitle){return}
-    titleInput.value = this.title;
+    if (!this.IschangingTitle){
+      titleInput.value = this.title;
+      this.changeTitleClickConfiguration(titleInput, titleElem);
+    }
     titleInput.parentElement?.setAttribute("style","display:block;");
     titleElem.setAttribute("style","display:none;");
     titleInput.focus();
     this.stopShowingInput = titleInput;
-    this.changeTitleClickConfiguration(titleInput, titleElem);
     this.adjustInputHeight(titleInput, 78);
     this.IschangingTitle = true;
   }
@@ -153,12 +156,19 @@ export class TasksListComponent implements AfterViewInit, OnInit {
       if(this.defaultCheck){
         this.tasksLenght++;
       }
-      this.tasks.push(newTask);
+      if(this.insertInTop){
+        this.tasks.unshift(newTask);
+      } else {
+        this.tasks.push(newTask);
+      }
     }
     newTaskInput.value = "";
     newTaskInput.removeAttribute("style");
     this.addingNewTask = false;
     this.documentClickEvents.closeEmojiForm();
+    if(this.clickEventListener){
+      document.removeEventListener('mousedown', this.clickEventListener);
+    }
   }
 
   taskCompletionChange(completed: boolean){
@@ -192,6 +202,7 @@ export class TasksListComponent implements AfterViewInit, OnInit {
   }
 
   deleteSelf(){
+    console.log("delete emit");
     this.parentComunnication.deleteTaskList(this);
   }
 
@@ -205,13 +216,15 @@ export class TasksListComponent implements AfterViewInit, OnInit {
     this.showOptions = 0;
   }
 
-  changeProperties(data: {title: string, listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean}){
+  changeProperties(data: {title: string, listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean, defaultInsertInTop: boolean, defaultHiddenCompleted: boolean}){
     this.title = data.title;
     this.listColor = data.listColor;
     this.listFontColor = data.listFontColor;
     this.defaultTaskColor = data.defaultTaskColor;
     this.defaultTaskFontColor = data.defaultTaskFontColor;
     this.defaultCheck = data.defaultCheck;
+    this.insertInTop = data.defaultInsertInTop;
+    this.hiddenCompleted = data.defaultHiddenCompleted;
     this.principalContainer.nativeElement.style.setProperty('--background-color', this.listColor);
     this.principalContainer.nativeElement.style.setProperty('--font-color', this.listFontColor);
   }

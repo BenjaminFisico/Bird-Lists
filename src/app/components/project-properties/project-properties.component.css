@@ -160,9 +160,14 @@ h2{
     border: 0;
 }
 
+.checkBoxInput{
+    opacity: 0;
+}
+
 .checkBoxInput + label{
-    position: absolute;
+    position: relative;
     width: 50px;
+    right: 24px;
     height: 25px;
     border-radius: 50px;
     background: linear-gradient(to bottom, #b3b3b3, #e6e6e6);
@@ -191,7 +196,8 @@ h2{
 }
 
 .checkBoxLabel{
-    margin-left: 32px;
+    margin-right: 32px;
+    margin-left: -16px;
     margin-top: 4px;
 }
 

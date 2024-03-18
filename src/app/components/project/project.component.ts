@@ -24,12 +24,14 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
       this.addTaskLists(taskList.title, taskList.tasks, taskList.listColor, taskList.listFontColor, taskList.defaultTaskColor, taskList.defaultTaskFontColor);
     });
   }
-  @Input() defaultListData: {listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean} = {
+  @Input() defaultListData: {listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean, defaultInsertInTop: boolean, defaultHiddenCompleted: boolean} = {
     listColor: "",
     listFontColor: "",
     defaultTaskColor: "",
     defaultTaskFontColor: "",
-    defaultCheck: true
+    defaultCheck: true,
+    defaultInsertInTop: false,
+    defaultHiddenCompleted: false,
   }
   @ViewChild('dropListArea', { static: false })
   dropListArea!: ElementRef;
@@ -91,7 +93,7 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
     this.listPropertiesOpen = true;
   }
 
-  changeTaskProperties(data: {title: string, listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean}){
+  changeTaskProperties(data: {title: string, listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean, defaultInsertInTop: boolean, defaultHiddenCompleted: boolean}){
     this.listPropertiesOpen = false;
     this.TaskListOpenProperties?.changeProperties(data);
   }
@@ -154,11 +156,13 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
                 listFontColor: string = "",
                 defaultTaskColor: string = "",
                 defaultTaskFontColor: string = "",
-                defaultCheck: boolean = this.defaultListData.defaultCheck
+                defaultCheck: boolean = this.defaultListData.defaultCheck,
+                insertInTop: boolean = this.defaultListData.defaultInsertInTop,
+                hiddenCompleted: boolean = this.defaultListData.defaultHiddenCompleted
               ): void{
     const hostElement = document.getElementById('taskListContainer');
     if(hostElement == null){ return; }
-    const taskRef = this.createTaskComponent(taskListTitle, taskList, listColor, listFontColor, defaultTaskColor, defaultTaskFontColor, defaultCheck);
+    const taskRef = this.createTaskComponent(taskListTitle, taskList, listColor, listFontColor, defaultTaskColor, defaultTaskFontColor, defaultCheck, insertInTop, hiddenCompleted);
     hostElement.appendChild(taskRef.location.nativeElement);
     this.appRef.attachView(taskRef.hostView);
     this.tasksList.push(taskRef);
@@ -172,6 +176,8 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
                               defaultTaskColor: string = "",
                               defaultTaskFontColor: string = "",
                               defaultCheck: boolean,
+                              insertInTop: boolean,
+                              hiddenCompleted: boolean
                             ): ComponentRef<any>{
     const taskRef = createComponent(TasksListComponent, {
       environmentInjector: this.environmentInjector,
@@ -206,6 +212,8 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
       taskRef.setInput('defaultTaskFontColor', this.defaultListData.defaultTaskFontColor);
     }
     taskRef.setInput('defaultCheck', defaultCheck);
+    taskRef.setInput('insertInTop', insertInTop);
+    taskRef.setInput('hiddenCompleted', hiddenCompleted);
     return taskRef;
   }
 

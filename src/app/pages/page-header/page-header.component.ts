@@ -20,7 +20,9 @@ export class PageHeaderComponent {
       defaultTaskColor: "",
       defaultTaskFontColor: "",
       defaultCheck: true,
-      taskLists: []};
+      taskLists: [],
+      defaultInsertInTop: false,
+      defaultHiddenCompleted: false};
 
     this.data.emit(newProject);
   }

@@ -8,5 +8,7 @@ export interface TaskList {
     defaultTaskColor?: string,
     defaultTaskFontColor?: string,
     defaultCheck?: boolean,
-    tasks: Task[]
+    tasks: Task[],
+    insertInTop: boolean,
+    hiddenCompleted: boolean
 }

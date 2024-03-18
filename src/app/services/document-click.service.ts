@@ -15,7 +15,6 @@ export class DocumentClickService {
     const handleFormGroupEvent = (event: Event) => {
       const target = event.target as any;
       if(target.form?.id == "formEmoji" || target.id == "formEmoji" || target.role == "button"){ 
-        console.log("Emoji form pressed");
         return;
       }
       if(target.form?.id != idForm && target.id != idForm && target.tagName != 'HTML'){

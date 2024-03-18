@@ -40,5 +40,7 @@
     <app-project-properties *ngIf="listPropertiesOpen && TaskListOpenProperties != undefined" [title]="taskListOpenTitle" 
     (propertiesEmit)="changeTaskProperties($event)" (focusOut)="closeTaskListProperties()"
     [taskListColor]="TaskListOpenProperties.listColor" [listFontColor]="TaskListOpenProperties.listFontColor"
-    [defaultTaskColor]="TaskListOpenProperties.defaultTaskColor" [defaultTaskFontColor]="TaskListOpenProperties.defaultTaskFontColor"></app-project-properties> 
+    [defaultTaskColor]="TaskListOpenProperties.defaultTaskColor" [defaultTaskFontColor]="TaskListOpenProperties.defaultTaskFontColor"
+    [defaultCheck]="TaskListOpenProperties.defaultCheck" [insertInTop]="TaskListOpenProperties.insertInTop"
+    [hiddenCompleted]="TaskListOpenProperties.hiddenCompleted"></app-project-properties> 
 </main>
