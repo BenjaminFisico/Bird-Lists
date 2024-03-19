@@ -21,7 +21,7 @@ export class ProjectComponent implements OnDestroy, AfterViewInit{
     });
     this.tasksList = [];
     TaskLists.forEach(taskList => {
-      this.addTaskLists(taskList.title, taskList.tasks, taskList.listColor, taskList.listFontColor, taskList.defaultTaskColor, taskList.defaultTaskFontColor);
+      this.addTaskLists(taskList.title, taskList.tasks, taskList.listColor, taskList.listFontColor, taskList.defaultTaskColor, taskList.defaultTaskFontColor, taskList.defaultCheck, taskList.insertInTop, taskList.hiddenCompleted);
     });
   }
   @Input() defaultListData: {listColor: string, listFontColor: string, defaultTaskColor: string, defaultTaskFontColor: string, defaultCheck: boolean, defaultInsertInTop: boolean, defaultHiddenCompleted: boolean} = {

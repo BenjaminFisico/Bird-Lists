@@ -44,6 +44,12 @@ export class FileLogicService {
       if(taskList.instance.defaultTaskFontColor != data.defaultTaskFontColor){
         taskListData.defaultTaskFontColor = taskList.instance.defaultTaskFontColor;
       }
+      if(taskList.instance.insertInTop == true){
+        taskListData.insertInTop = true;
+      }
+      if(taskList.instance.hiddenCompleted == true){
+        taskListData.hiddenCompleted = true;
+      }
 
       taskList.instance.tasks.forEach(task => {
         let taskData: Task = task;
