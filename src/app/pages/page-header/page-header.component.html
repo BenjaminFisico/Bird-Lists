@@ -8,7 +8,7 @@
             <img class="birdWing" src="../../../assets/icons/origami-bird-wing.svg"/>
           </div>
           <h1>Lists </h1>
-          <button *ngIf="!showMenu">Volver al menu</button>
+          <button *ngIf="!showMenu" style="font-size: 1rem; padding: 4px;">Volver al menu</button>
         </a></li>
         <li *ngIf="showMenu" class="flex">
           <button (click)="newProjectPressed()">Nuevo proyecto</button>
