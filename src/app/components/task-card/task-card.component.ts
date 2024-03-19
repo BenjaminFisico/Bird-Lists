@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DocumentClickService } from 'src/app/services/document-click.service';
 import { Task } from 'src/app/interfaces/task';
 
@@ -7,19 +7,25 @@ import { Task } from 'src/app/interfaces/task';
   templateUrl: './task-card.component.html',
   styleUrls: ['./task-card.component.css']
 })
-export class TaskCardComponent {
+export class TaskCardComponent implements OnInit{
   @Input() task: Task = {id:0, title:"", color:"", checkList: true, completed: false , fontColor: "",startTime: new Date()};
   @Output() deleteTask = new EventEmitter<Task>();
   @Output() taskCompletion = new EventEmitter<boolean>();
   @Output() checkListChange = new EventEmitter<boolean>();
-  
+
+
+  temporalCompletion: boolean = false;
   editingTask: boolean = false;
   openMenu: number = 0;
   protected clickEventListener: EventListener|undefined;
 
   constructor( private documentClickEvents: DocumentClickService) {
     this.clickEventListener = undefined;
-   }
+  }
+
+  ngOnInit(): void {
+    this.temporalCompletion = this.task.completed;
+  }
 
   editTask(input: HTMLTextAreaElement, taskText: HTMLElement): void{
     if(this.editingTask) {return;}
@@ -78,8 +84,17 @@ export class TaskCardComponent {
   }
 
   taskCompleted(event:any): void{
-    this.task.completed = event.target.checked;
-    this.taskCompletion.emit(this.task.completed);
+    this.temporalCompletion = event.target.checked;
+    this.emitCompletion(event.target.checked);
+  }
+
+  emitCompletion(checkValue: boolean){
+    setTimeout(() => {
+      if(this.temporalCompletion == checkValue && this.task.completed != checkValue){
+        this.task.completed = checkValue;
+        this.taskCompletion.emit(checkValue);
+      }
+    }, 1000);
   }
 
   deleteTaskEmit(): void{

@@ -11,7 +11,7 @@
 
 <input *ngIf="task.checkList" type="checkbox" (change)="taskCompleted($event)" class="taskCheckbox" [checked]="task.completed"/>
 <form id="taskForm">
-    <a (click)="editTask(taskInput, taskText)" [style]="'background:'+ task.color" [class]="task.completed ? 'completed' : ''">
+    <a (click)="editTask(taskInput, taskText)" [style]="'background:'+ task.color" [class]="temporalCompletion ? 'completed' : ''">
         <p #taskText [style]="'color:'+ task.fontColor" >{{task.title}}</p>
         <textarea #taskInput (keydown.enter)="finishEditing(taskInput, taskText)"
                 autocomplete="off" style="display:none;"></textarea>
